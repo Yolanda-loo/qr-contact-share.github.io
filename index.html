@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Contact Share</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
 
+    <div class="container">
+        <nav class="tabs">
+            <button id="btn-generate" class="active" onclick="switchTab('generate')">Generate</button>
+            <button id="btn-scan" onclick="switchTab('scan')">Scan</button>
+        </nav>
+
+        <div id="section-generate" class="content-section">
+            <h2>Share Your Number</h2>
+            <p>Enter your number to create a QR code.</p>
+            
+            <input type="tel" id="phone-input" placeholder="+1 234 567 8900">
+            <button class="action-btn" onclick="generateQR()">Create QR Code</button>
+
+            <div id="qrcode-container"></div>
+            <p id="qr-instruction" class="hidden">Scan this to save contact</p>
+        </div>
+
+        <div id="section-scan" class="content-section hidden">
+            <h2>Scan a Code</h2>
+            <div id="reader"></div> <div id="result-container" class="hidden">
+                <h3>Number Found:</h3>
+                <p id="scanned-number">---</p>
+                <div class="button-group">
+                    <a id="call-btn" href="#" class="action-btn">📞 Call</a>
+                    <button onclick="copyNumber()" class="secondary-btn">📋 Copy</button>
+                </div>
+                <button onclick="resetScanner()" class="reset-link">Scan Another</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
