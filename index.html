@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Contact Share</title>
+    <title>QuickConnect</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
@@ -11,28 +11,40 @@
 
     <div class="container">
         <nav class="tabs">
-            <button id="btn-generate" class="active" onclick="switchTab('generate')">Generate</button>
+            <button id="btn-generate" class="active" onclick="switchTab('generate')">My Card</button>
             <button id="btn-scan" onclick="switchTab('scan')">Scan</button>
         </nav>
 
         <div id="section-generate" class="content-section">
-            <h2>Share Your Number</h2>
-            <p>Enter your number to create a QR code.</p>
             
-            <input type="tel" id="phone-input" placeholder="+1 234 567 8900">
-            <button class="action-btn" onclick="generateQR()">Create QR Code</button>
+            <div class="digital-card">
+                <div id="qrcode-container"></div>
+                <h3 id="display-name">Your Name</h3>
+                <p id="display-phone">No number set</p>
+            </div>
 
-            <div id="qrcode-container"></div>
-            <p id="qr-instruction" class="hidden">Scan this to save contact</p>
+            <div class="input-group">
+                <label>Edit Details</label>
+                <input type="text" id="name-input" placeholder="Full Name" oninput="updateData()">
+                <input type="tel" id="phone-input" placeholder="Mobile Number" oninput="updateData()">
+                <input type="email" id="email-input" placeholder="Email (Optional)" oninput="updateData()">
+            </div>
+            
+            <p class="instruction">Scan this code with any phone camera to add to contacts.</p>
         </div>
 
         <div id="section-scan" class="content-section hidden">
-            <h2>Scan a Code</h2>
-            <div id="reader"></div> <div id="result-container" class="hidden">
-                <h3>Number Found:</h3>
-                <p id="scanned-number">---</p>
+            <h2>Scan Contact</h2>
+            <div id="reader"></div>
+            
+            <div id="result-container" class="hidden">
+                <div class="result-box">
+                    <p class="label">Detected Number:</p>
+                    <h3 id="scanned-number">---</h3>
+                </div>
+                
                 <div class="button-group">
-                    <a id="call-btn" href="#" class="action-btn">📞 Call</a>
+                    <a id="call-btn" href="#" class="action-btn">📞 Call Now</a>
                     <button onclick="copyNumber()" class="secondary-btn">📋 Copy</button>
                 </div>
                 <button onclick="resetScanner()" class="reset-link">Scan Another</button>
