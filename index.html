@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuickConnect</title>
+    <title>QuickConnect Premium</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -17,20 +17,41 @@
 
         <div id="section-generate" class="content-section">
             
-            <div class="digital-card">
-                <div id="qrcode-container"></div>
-                <h3 id="display-name">Your Name</h3>
-                <p id="display-phone">No number set</p>
+            <div class="business-card">
+                <div class="card-header">
+                    <div>
+                        <h2 id="display-name">Your Name</h2>
+                        <p id="display-role">Job Title</p>
+                    </div>
+                    <span class="card-chip"></span>
+                </div>
+                
+                <div class="card-body">
+                    <div class="qr-wrapper">
+                        <div id="qrcode-container"></div>
+                    </div>
+                    <div class="card-details">
+                        <p id="display-company">Company Name</p>
+                        <p class="scan-hint">Scan to Connect</p>
+                    </div>
+                </div>
             </div>
 
+            <button onclick="downloadQR()" class="secondary-btn download-btn">
+                ⬇️ Download Card Image
+            </button>
+
             <div class="input-group">
-                <label>Edit Details</label>
+                <label>Identity</label>
                 <input type="text" id="name-input" placeholder="Full Name" oninput="updateData()">
+                <input type="text" id="role-input" placeholder="Job Title (e.g. Developer)" oninput="updateData()">
+                <input type="text" id="company-input" placeholder="Company" oninput="updateData()">
+                
+                <label>Contact Details</label>
                 <input type="tel" id="phone-input" placeholder="Mobile Number" oninput="updateData()">
-                <input type="email" id="email-input" placeholder="Email (Optional)" oninput="updateData()">
+                <input type="email" id="email-input" placeholder="Email Address" oninput="updateData()">
+                <input type="url" id="website-input" placeholder="Website (https://...)" oninput="updateData()">
             </div>
-            
-            <p class="instruction">Scan this code with any phone camera to add to contacts.</p>
         </div>
 
         <div id="section-scan" class="content-section hidden">
@@ -39,7 +60,7 @@
             
             <div id="result-container" class="hidden">
                 <div class="result-box">
-                    <p class="label">Detected Number:</p>
+                    <p class="label">Found Number:</p>
                     <h3 id="scanned-number">---</h3>
                 </div>
                 

@@ -1,7 +1,6 @@
 :root {
     --primary: #2563eb;
     --bg: #f3f4f6;
-    --card-bg: #1f2937;
     --text: #1f2937;
     --white: #ffffff;
 }
@@ -19,15 +18,20 @@ body {
 
 .container {
     background: var(--white);
-    width: 90%;
-    max-width: 400px;
-    padding: 0;
-    border-radius: 16px;
+    width: 100%;
+    max-width: 420px; /* Slightly wider for the card */
+    min-height: 100vh; /* Full screen on mobile */
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    overflow: hidden;
-    min-height: 600px;
     display: flex;
     flex-direction: column;
+}
+
+@media(min-width: 500px) {
+    .container {
+        min-height: auto;
+        border-radius: 20px;
+        margin: 20px;
+    }
 }
 
 /* Tabs */
@@ -35,6 +39,9 @@ body {
     display: flex;
     background: #fff;
     border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .tabs button {
@@ -56,39 +63,95 @@ body {
 .content-section {
     padding: 24px;
     flex: 1;
+    overflow-y: auto; /* Allow scrolling */
 }
 
-/* Digital Card Look */
-.digital-card {
-    background: var(--card-bg);
+/* --- PREMIUM CARD DESIGN --- */
+.business-card {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
     color: white;
-    padding: 30px 20px;
-    border-radius: 12px;
-    text-align: center;
-    margin-bottom: 25px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-}
-
-#qrcode-container {
-    background: white;
-    padding: 10px;
-    display: inline-block;
-    border-radius: 8px;
+    padding: 24px;
+    border-radius: 16px;
     margin-bottom: 15px;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+    position: relative;
+    overflow: hidden;
 }
 
-#display-name { margin: 10px 0 5px; font-size: 20px; }
-#display-phone { margin: 0; color: #9ca3af; font-size: 14px; }
+/* Gold Chip Effect */
+.card-chip {
+    width: 45px;
+    height: 32px;
+    background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+    border-radius: 6px;
+    display: block;
+    opacity: 0.9;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
 
-/* Inputs */
-.input-group { text-align: left; }
-.input-group label { 
-    font-size: 12px; 
-    font-weight: 600; 
-    text-transform: uppercase; 
-    color: #6b7280; 
-    margin-bottom: 5px; 
-    display: block; 
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 20px;
+}
+
+#display-name {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+#display-role {
+    margin: 4px 0 0;
+    font-size: 14px;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+.card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.qr-wrapper {
+    background: white;
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+#qrcode-container img, #qrcode-container canvas {
+    display: block; /* Remove gap */
+}
+
+.card-details {
+    text-align: right;
+}
+
+#display-company {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.scan-hint {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+/* Inputs & Buttons */
+.input-group label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin: 20px 0 8px 0;
+    display: block;
 }
 
 input {
@@ -96,7 +159,7 @@ input {
     padding: 14px;
     margin-bottom: 12px;
     border: 1px solid #e5e7eb;
-    border-radius: 8px;
+    border-radius: 10px;
     box-sizing: border-box;
     font-size: 16px;
     background: #f9fafb;
@@ -108,19 +171,24 @@ input:focus {
     background: #fff;
 }
 
-.instruction {
-    text-align: center;
-    color: #6b7280;
-    font-size: 13px;
-    margin-top: 20px;
+.download-btn {
+    margin-bottom: 10px;
+    border: 2px dashed #d1d5db;
+    background: transparent;
+    color: #4b5563;
 }
 
-/* Scanner & Buttons */
+.download-btn:hover {
+    background: #f3f4f6;
+    border-color: #9ca3af;
+}
+
+/* Scanner */
 .action-btn {
     background: var(--primary);
     color: var(--white);
-    padding: 14px;
-    border-radius: 8px;
+    padding: 16px;
+    border-radius: 10px;
     text-align: center;
     display: block;
     text-decoration: none;
@@ -132,9 +200,9 @@ input:focus {
     background: #f3f4f6;
     color: var(--text);
     border: none;
-    padding: 14px;
+    padding: 16px;
     width: 100%;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: 600;
     cursor: pointer;
 }
@@ -146,16 +214,6 @@ input:focus {
     border-radius: 12px;
     margin-bottom: 20px;
     border: 1px solid #dbeafe;
-}
-
-.reset-link {
-    background: none;
-    border: none;
-    color: #6b7280;
-    margin-top: 15px;
-    cursor: pointer;
-    text-decoration: underline;
-    width: 100%;
 }
 
 .hidden { display: none !important; }
