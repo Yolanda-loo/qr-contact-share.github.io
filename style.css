@@ -1,7 +1,7 @@
-
 :root {
     --primary: #2563eb;
     --bg: #f3f4f6;
+    --card-bg: #1f2937;
     --text: #1f2937;
     --white: #ffffff;
 }
@@ -21,83 +21,141 @@ body {
     background: var(--white);
     width: 90%;
     max-width: 400px;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    text-align: center;
+    padding: 0;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    overflow: hidden;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Tabs */
 .tabs {
     display: flex;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #e5e7eb;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .tabs button {
     flex: 1;
-    padding: 10px;
+    padding: 16px;
     border: none;
     background: none;
     font-weight: 600;
     cursor: pointer;
     color: #9ca3af;
+    font-size: 16px;
 }
 
 .tabs button.active {
     color: var(--primary);
-    border-bottom: 2px solid var(--primary);
-    margin-bottom: -2px;
+    border-bottom: 3px solid var(--primary);
 }
 
-/* Inputs & Buttons */
+.content-section {
+    padding: 24px;
+    flex: 1;
+}
+
+/* Digital Card Look */
+.digital-card {
+    background: var(--card-bg);
+    color: white;
+    padding: 30px 20px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+#qrcode-container {
+    background: white;
+    padding: 10px;
+    display: inline-block;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+#display-name { margin: 10px 0 5px; font-size: 20px; }
+#display-phone { margin: 0; color: #9ca3af; font-size: 14px; }
+
+/* Inputs */
+.input-group { text-align: left; }
+.input-group label { 
+    font-size: 12px; 
+    font-weight: 600; 
+    text-transform: uppercase; 
+    color: #6b7280; 
+    margin-bottom: 5px; 
+    display: block; 
+}
+
 input {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 10px;
-    border: 1px solid #d1d5db;
+    padding: 14px;
+    margin-bottom: 12px;
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
     box-sizing: border-box;
     font-size: 16px;
+    background: #f9fafb;
 }
 
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #fff;
+}
+
+.instruction {
+    text-align: center;
+    color: #6b7280;
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+/* Scanner & Buttons */
 .action-btn {
     background: var(--primary);
     color: var(--white);
-    border: none;
-    padding: 12px 20px;
+    padding: 14px;
     border-radius: 8px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 16px;
+    text-align: center;
     display: block;
     text-decoration: none;
-    box-sizing: border-box;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .secondary-btn {
-    background: #e5e7eb;
+    background: #f3f4f6;
     color: var(--text);
     border: none;
-    padding: 12px 20px;
+    padding: 14px;
+    width: 100%;
     border-radius: 8px;
+    font-weight: 600;
     cursor: pointer;
+}
+
+.result-box {
+    text-align: center;
+    background: #eff6ff;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #dbeafe;
+}
+
+.reset-link {
+    background: none;
+    border: none;
+    color: #6b7280;
+    margin-top: 15px;
+    cursor: pointer;
+    text-decoration: underline;
     width: 100%;
-    margin-top: 10px;
 }
 
-/* QR Area */
-#qrcode-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-}
-
-/* Scanner */
-#reader {
-    width: 100%;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.hidden { display: none; }
+.hidden { display: none !important; }
